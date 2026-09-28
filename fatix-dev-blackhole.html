@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FATIX Dev.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Playfair+Display:ital,wght@1,600&display=swap">
+<style>
+:root{--bg:#05070d;--tx:#e6ecf8;--mute:#93a0ba;--ac:#38d5ff;--am:#ffb547;--sl:#c9d3e0;--glass:rgba(255,255,255,.055);--bd:rgba(255,255,255,.12);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.65 "Sora","Segoe UI",system-ui,sans-serif}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;background:radial-gradient(circle at 50% 50%,#000 0,#000 8%,#ffb547 9%,#8a410c 15%,#05070d 42%)}
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(5,7,13,.35);border-bottom:1px solid var(--bd)}
+.wm{font-weight:800;font-style:italic;font-size:22px;letter-spacing:-.06em;color:var(--sl);text-decoration:none;display:flex;align-items:baseline;gap:6px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.wm i{font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:17px;letter-spacing:0;color:var(--ac)}
+nav a{color:var(--mute);text-decoration:none;font-size:14px;margin-left:20px}
+nav a:hover,nav a:focus-visible{color:var(--ac);outline:none}
+.fx{position:fixed;left:0;right:0;z-index:5;text-align:center;padding:0 22px;opacity:0;transition:opacity .6s;pointer-events:none}
+.fx.on{opacity:1}
+#hero{top:50%;transform:translateY(-50%)}
+#hero.on a{pointer-events:auto}
+h1{font-size:clamp(34px,6.4vw,76px);line-height:1.06;letter-spacing:-.03em;margin:0 auto 18px;max-width:16ch;font-weight:800}
+.lead{color:var(--mute);max-width:52ch;margin:0 auto 28px}
+.btn{display:inline-block;padding:12px 22px;border-radius:999px;border:1px solid var(--bd);background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--tx);text-decoration:none;font-size:14px;margin:4px}
+.btn.p{border-color:var(--ac);color:var(--ac)}
+.btn:hover,.btn:focus-visible{background:rgba(56,213,255,.16);outline:none}
+.cap{bottom:16%;font-size:clamp(22px,4vw,44px);font-weight:600;letter-spacing:-.02em}
+#journey{height:1300vh;position:relative;z-index:1}
+main{position:relative;z-index:2}
+section{padding:96px 22px;max-width:1080px;margin:0 auto}
+.glass{background:var(--glass);border:1px solid var(--bd);border-radius:22px;backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 30px 80px rgba(0,0,0,.45)}
+h2{font-size:clamp(28px,4.4vw,48px);letter-spacing:-.02em;line-height:1.1;margin:0 0 12px}
+.sub{color:var(--mute);max-width:60ch;margin:0 0 32px}
+.badge{display:inline-block;font-size:13px;color:var(--am);border:1px solid rgba(255,181,71,.4);border-radius:999px;padding:3px 12px;margin-bottom:18px}
+.big{padding:44px}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.item{padding:22px}
+.item h3{margin:0 0 6px;font-size:17px}
+.item p{margin:0;color:var(--mute);font-size:14px}
+.chat{padding:22px;font-size:14px}
+.chat .t{color:var(--mute);font-size:12px;margin-bottom:12px}
+.m{padding:10px 14px;border-radius:14px;margin:8px 0;max-width:88%}
+.m.u{background:rgba(255,255,255,.08);margin-left:auto}
+.m.a{background:rgba(56,213,255,.12);border:1px solid rgba(56,213,255,.3)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:8px}
+.node{padding:14px 18px;font-size:14px}
+.node span{display:block;color:var(--mute);font-size:12px}
+.arr{color:var(--ac);font-size:20px}
+form{display:grid;gap:12px;padding:30px}
+input,textarea{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:12px;padding:13px 14px;color:var(--tx);font:inherit;font-size:14px}
+input:focus,textarea:focus{outline:2px solid var(--ac);outline-offset:1px}
+#ok{color:var(--ac);font-size:14px;min-height:20px}
+footer{position:relative;z-index:2;padding:34px 22px;text-align:center;color:var(--mute);font-size:13px;border-top:1px solid var(--bd);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(5,7,13,.5)}
+@media(max-width:760px){nav{display:none}.two{grid-template-columns:1fr}.big{padding:26px}}
+.wm{position:fixed;top:calc(env(safe-area-inset-top,0px) + 16px);left:22px;z-index:10}
+.lab{left:6vw;right:auto;bottom:14%;text-align:left;max-width:min(430px,88vw);padding:20px 22px;border-radius:20px;background:var(--glass);border:1px solid var(--bd);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);font-size:16px;font-weight:400}
+.lab.r{left:auto;right:6vw}.lab h3{margin:0 0 6px;color:var(--ac)}.lab p{margin:0;color:var(--mute);font-size:14px}
+#fin{top:50%;transform:translateY(-50%)}#fin.on{pointer-events:auto}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<a class="wm" id="wmk" href="#" aria-label="FATIX Dev.">FATIX<i>DEV.</i></a>
+
+<div class="fx on" id="hero">
+  <h1>Karanlığın ötesinde, kendi yapay zekân.</h1>
+  <p class="lead">FATIX Dev. imzalı ATOM: kişisel verini buluta göndermeden, işlerini senin yerine yapan yerel yapay zekâ asistanı.</p>
+  <a class="btn p" href="#" id="go">Yolculuğa başla</a><a class="btn" href="#" id="go2">ATOM'u keşfet</a>
+</div>
+<div class="fx cap" id="c1">Kişisel veri, bulutun çekim alanına girmemeli.</div>
+<div class="fx cap" id="c2">Bulut bağımlılığının ufkunu geçiyoruz.</div>
+<div class="fx cap" id="c3">Tekillikten bir çekirdek doğar: ATOM.</div>
+
+<div class="fx cap" id="c4">ATOM: yerel çalışan, işi senin yerine yapan yapay zekâ asistanı.</div>
+<div class="fx lab" id="l1"><h3>Çekirdek: yerel model</h3><p>ATOM bulut API'lerine bağlı değil. DeepSeek-R1 ve Llama 3.1/3.3 gibi açık kaynak yerel modeller üzerinde çalışır ve şimdilik bir dizüstü bilgisayarda test ediliyor. Modellerin kendisi küçük; asıl güç, üstüne kurulan ajan sisteminden, araçlardan ve hafızadan gelir. Token ücreti yok ve kişisel veri şirket sunucularına gitmez, bu da KVKK kaygısını baştan çözer.</p></div>
+<div class="fx lab r" id="l2"><h3>Ajan halkası: işi devralır</h3><p>Günlük hayatta zaman alan işleri (ofis işleri, alışveriş araştırması, program kurulumu, sunucu hazırlığı) adım adım kendisi yürütür. Bir eylemde hata alırsa nedenini bulur, düzeltir ve dersi hafızasına yazar. Böylece aynı hatayı ikinci kez yapmamayı öğrenir.</p></div>
+<div class="fx lab" id="l3"><h3>Ev ve Şehir: iki birim, tek kapı</h3><p>İç Birim (Ev) internete kapalı çalışır. Dış Birim (Şehir) yalnızca gerektiğinde açılır: "bana bir ofis klavyesi bul" dediğinde ATOM şehre iner, en uygun seçenekleri getirir ve kapıyı tekrar kapatır. Alışverişe ise sen onay vermeden girişmez.</p></div>
+<div class="fx lab r" id="l4"><h3>Şifreli kasa: veri dağılır</h3><p>Eylem sırasında karşılaşılan kişisel veri şifrelenip yerel kasaya alınır ve parçalanarak dağıtılır. Kasa yalnızca yetkili tek kullanıcıya tanımlı fiziksel USB anahtarla açılır. Anahtar yoksa dosyalar anlamsız parçalar olarak kalır. Bu, planlanan tasarımın hedefidir.</p></div>
+<div class="fx lab" id="l5"><h3>Risk halkası: önce ölç, sonra hareket et</h3><p>ATOM her eylemden önce risk analizi yapar. Riskin yaklaşık %40 altında işi yapar ve ne yaptığını gösterir. %40'ın üstünde neyi kurup neyi sileceğini anlatır ve her adımda onay ister. %98'in üstünde eylemi reddeder; sen yine de emredersen sorumluluğun sende olduğunu belirten bir sözleşme sunar, onayın da kasada saklanır.</p></div>
+<div class="fx" id="fin"><form id="f1" class="glass" style="max-width:460px;margin:0 6vw 0 auto;text-align:left"><h2 style="font-size:28px">ATOM'u birlikte şekillendirelim.</h2><p style="margin:0;color:var(--mute);font-size:14px">ATOM şu anda tasarım ve geliştirme aşamasında. Erken erişim ve iş birliği için yaz.</p><input type="email" required placeholder="E-posta adresin" aria-label="E-posta"><textarea rows="3" placeholder="Kısaca anlat" aria-label="Mesaj"></textarea><button class="btn p" type="submit">Gönder</button><div id="ok" role="status"></div></form></div>
+<div id="journey"></div>
+
+
+
+<script>
+(function(){
+var cv=document.getElementById('gl'),gl=cv.getContext('webgl',{antialias:false})||cv.getContext('experimental-webgl');
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fs="#ifdef GL_FRAGMENT_PRECISION_HIGH\nprecision highp float;\n#else\nprecision mediump float;\n#endif\nuniform vec2 uR,uM;uniform float uT,uP,uD;\nfloat h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}\nfloat h3(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}\nfloat nz(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);\nreturn mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+vec2(1.,1.)),f.x),f.y);}\nvec3 sky(vec3 d){\nvec3 s=d*55.,id=floor(s),f=fract(s)-.5;float r=h3(id);\nfloat st=step(.983,r)*(1.-smoothstep(0.,.42,length(f)))*(.4+.6*h3(id+7.));\nvec3 tint=mix(vec3(.7,.8,1.),vec3(1.,.8,.6),h3(id+3.));\nfloat band=exp(-d.y*d.y*9.)*(.35+.65*nz(d.xz*3.+d.y*6.));\nreturn tint*st*1.7+vec3(.16,.2,.42)*band*.35+vec3(.012,.016,.03);}\nvec3 bh(){\nvec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y;\nfloat b=clamp(uP*2.,0.,1.),k=smoothstep(.72,.95,b),e=smoothstep(0.,.75,b);\nfloat ca=b*.5*(1.-k);uv=mat2(cos(ca),-sin(ca),sin(ca),cos(ca))*uv;\nfloat dist=mix(26.,7.,e),inc=mix(.22,.075,e)+uM.y*.08,az=uT*.03+uM.x*.4;\nvec3 cp=dist*vec3(sin(az)*cos(inc),sin(inc),cos(az)*cos(inc));\nvec3 f=normalize(-cp),rt=normalize(cross(f,vec3(0.,1.,0.))),up=cross(rt,f);\nvec3 vel=normalize(f*1.5+rt*uv.x+up*uv.y),pos=cp,col=vec3(0.);\nfloat tr=1.,mr=99.;bool bh=false;\nfor(int i=0;i<130;i++){\nfloat r2=dot(pos,pos),r=sqrt(r2);mr=min(mr,r);\nif(r<1.){bh=true;break;}\nif(r>45.&&dot(pos,vel)>0.)break;\nvec3 c=cross(pos,vel);float dt=min(.05+.045*r,1.);\nvel=normalize(vel-1.5*dot(c,c)*pos/(r2*r2*r)*dt);\nvec3 np=pos+vel*dt;\nif(pos.y*np.y<0.){\nfloat t=pos.y/(pos.y-np.y);vec3 hp=mix(pos,np,t);float rr=length(hp.xz);\nif(rr>2.5&&rr<9.){\nfloat an=uT*1.1/(rr*sqrt(rr)),c2=cos(an),s2=sin(an);\nvec2 q=vec2(hp.x*c2-hp.z*s2,hp.x*s2+hp.z*c2);\nfloat n=nz(q*2.4)*.55+nz(q*7.)*.3+nz(q*11.)*.15;\nfloat sr=.55+.45*sin(rr*10.+n*5.);\nfloat I=pow(1.-(rr-2.5)/6.5,1.7);\nfloat edge=smoothstep(2.5,2.9,rr)*(1.-smoothstep(6.5,9.,rr));\nvec3 vd=normalize(vec3(-hp.z,0.,hp.x));\nfloat D=1./(1.-clamp(dot(vd,-vel)*sqrt(.5/rr)*1.1,-.6,.6));\nfloat br=I*(.35+n)*sr*D*D*D*1.8+.04*D;\nvec3 dc=mix(vec3(1.,.36,.07),vec3(1.,.9,.72),clamp(I*D*.9,0.,1.))*br;\nfloat al=clamp(edge*(.35+n*.9),0.,.95)*(1.-k);\ncol+=tr*dc*al*1.4;tr*=1.-al*.9;}}\npos=np;}\nif(!bh)col+=tr*sky(vel);\ncol+=vec3(1.,.78,.5)*.03/(abs(mr-1.45)+.05)*(1.-k)*.55;\ncol*=1.-k*.75;\ncol+=vec3(.2,.85,1.)*.014/(length(uv)+.014)*k*1.5;\nfor(int i=0;i<3;i++){float fi=float(i),an=.6+fi*1.05+uT*.05,c=cos(an),s=sin(an);\nvec2 v=vec2(c*uv.x+s*uv.y,-s*uv.x+c*uv.y);v.y/=.38;float rr=.22*(1.+.28*fi);\ncol+=vec3(.2,.85,1.)*(1.-smoothstep(0.,.004,abs(length(v)-rr)))*.7*k;\nfloat t=uT*(.7+.3*fi)+fi*2.;col+=vec3(.7,.95,1.)*.006/(length(v-vec2(cos(t),sin(t))*rr)+.004)*k;}\nreturn col;}\nfloat DN,DR,SC;\nmat2 rt(float a){return mat2(cos(a),-sin(a),sin(a),cos(a));}\nfloat bx(vec3 p,vec3 b,float r){vec3 q=abs(p)-b+r;return length(max(q,0.))+min(max(q.x,max(q.y,q.z)),0.)-r;}\nfloat tor(vec3 p,float R,float r){return length(vec2(length(p.xz)-R,p.y))-r;}\nvec2 mp(vec3 p){\nDN=length(p)-(.42+.015*sin(uT*2.));float d=DN,m=1.,a;\nfloat L=length(p),ang=acos(clamp(p.z/max(L,.001),-1.,1.));\nfloat az=atan(p.z,p.x),po=acos(clamp(p.y/max(L,.001),-1.,1.));\nfloat dl=abs(fract(az*1.9099+.5)-.5)*.5236*L*sin(po),dt=abs(fract(po*2.5465+.5)-.5)*.3927*L;\na=length(vec2(abs(L-1.55),min(dl,dt)))-.014;a=max(a,DR*.85-ang);\nif(a<d){d=a;m=2.;}\nvec3 q=vec3(p.x,p.y*.825-p.z*.565,p.y*.565+p.z*.825);\na=tor(q,.95,.012);if(a<d){d=a;m=3.;}\nfor(int i=0;i<3;i++){float t=uT*.9+float(i)*2.094;a=length(q-vec3(cos(t),0.,sin(t))*.95)-.05;if(a<d){d=a;m=4.;}}\nvec3 q2=vec3(p.x,p.y*.97-p.z*.25,p.y*.25+p.z*.97);\na=tor(q2,1.95,.012);if(a<d){d=a;m=6.;}\nfor(int i=0;i<8;i++){float fi=float(i);\nvec3 c=normalize(vec3(sin(fi*2.4),cos(fi*1.7),sin(fi*3.1)+.3))*(.7+SC*(.9+.15*fi));\nvec3 w=p-c;w.xz=rt(uT*.5+fi)*w.xz;w.xy=rt(uT*.4+fi*2.)*w.xy;\na=bx(w,vec3(.05+.01*mod(fi,3.)),.01);if(a<d){d=a;m=5.;}}\nreturn vec2(d,m);}\nvec3 nm(vec3 p){vec2 e=vec2(.002,0.);\nreturn normalize(vec3(mp(p+e.xyy).x-mp(p-e.xyy).x,mp(p+e.yxy).x-mp(p-e.yxy).x,mp(p+e.yyx).x-mp(p-e.yyx).x));}\nvec3 envm(vec3 r){\nvec3 c=mix(vec3(.01,.02,.04),vec3(.06,.2,.3),smoothstep(-.4,.9,r.y));\nc+=vec3(.9,.95,1.)*exp(-pow((r.y-.45)*14.,2.))*.6*smoothstep(-.6,.2,r.x+r.z*.3);\nc+=vec3(.2,.9,1.)*exp(-pow((r.x*.8-r.z*.6+.55)*7.,2.))*.7;\nc+=vec3(1.,.7,.4)*exp(-pow((r.x*.7+r.z*.7-.7)*6.,2.))*exp(-pow((r.y-.1)*3.,2.))*.5;\nreturn c;}\nfloat shw(vec3 ro,vec3 rd){float res=1.,t=.04;\nfor(int i=0;i<28;i++){float h=mp(ro+rd*t).x;res=min(res,10.*h/t);t+=clamp(h,.02,.25);if(res<.02||t>4.)break;}\nreturn clamp(res,0.,1.);}\nfloat aoc(vec3 p,vec3 n){float o=0.,sc=1.;\nfor(int i=1;i<=5;i++){float h=.03+.11*float(i);o+=(h-mp(p+n*h).x)*sc;sc*=.8;}\nreturn clamp(1.-1.6*o,0.,1.);}\nvec3 shd(vec3 p,vec3 rd,float m){\nvec3 n=nm(p),V=-rd,cy=vec3(.1,.85,1.);\nfloat fr=pow(1.-max(dot(n,V),0.),4.);\nif(m<1.5){float f2=pow(1.-max(dot(n,V),0.),2.);float pt=.5+.5*sin(p.x*16.+uT)*sin(p.y*16.-uT*.7)*sin(p.z*16.);\nreturn mix(vec3(.02,.3,.42),vec3(.6,1.,1.),pt*.55+f2*.9)*1.6;}\nif(m>3.5&&m<4.5)return vec3(.9,1.,1.)*1.8+cy*fr*2.;\nif(m>5.5){float u=fract(atan(p.z,p.x)/6.2832+.5);\nreturn (u<.4?vec3(.1,.9,.4):u<.98?vec3(1.,.7,.15):vec3(1.,.15,.1))*(1.1+.5*fr);}\nvec3 l1=normalize(vec3(.5,.9,.4)),l2=normalize(vec3(-.8,.2,.5)),l3=normalize(vec3(-.2,.4,-.9));\nvec3 lc=-p/max(length(p),.01);float ca=1./(1.+dot(p,p)*.9);\nfloat sh=shw(p+n*.02,l1),ao=aoc(p,n);\nvec3 alb=vec3(.035,.05,.08);float sp=90.,mtl=.9;\nif(m>2.5&&m<3.5){alb=vec3(.6,.75,.85);sp=70.;}\nif(m>4.5&&m<5.5){alb=vec3(1.,.55,.12)*.9;sp=140.;mtl=.35;}\nvec3 col=alb*(.05+ao*(vec3(1.,.95,.9)*max(dot(n,l1),0.)*sh*1.1+cy*max(dot(n,l2),0.)*.25+vec3(.5,.6,1.)*max(dot(n,l3),0.)*.5));\ncol+=cy*(alb+.15)*ca*(.3+max(dot(n,lc),0.))*1.6;\nvec3 r=reflect(rd,n),h=normalize(l1+V);\ncol+=envm(r)*(.12+.96*fr)*ao*mtl*1.5;\ncol+=vec3(1.,.97,.9)*pow(max(dot(n,h),0.),sp)*sh*(.6+mtl);\nif(m<2.5)col+=cy*(.1+fr*.9);else if(m>4.5&&m<5.5)col+=vec3(1.,.5,.1)*(.25+fr*1.6);\nreturn col;}\nvec3 mc(){\nvec2 uv=(gl_FragCoord.xy-.5*uR)/uR.y;uv.x+=.32*smoothstep(.95,.985,uP)*step(1.2,uR.x/uR.y);\nDR=smoothstep(.77,.79,uP)*(1.-smoothstep(.805,.82,uP));\nSC=smoothstep(.845,.87,uP)*(1.-smoothstep(.885,.9,uP));\nfloat az=(uP-.5)*1.2+sin(uT*.15)*.15+uM.x*.4,el=.28+uM.y*.2;\nfloat ds=mix(mix(5.4,4.4,smoothstep(.83,.9,uP)),7.,smoothstep(.95,.985,uP))*clamp(1.3/(uR.x/uR.y),1.,2.4);\nvec3 ro=ds*vec3(sin(az)*cos(el),sin(el),cos(az)*cos(el));\nvec3 f=normalize(-ro),r0=normalize(cross(f,vec3(0.,1.,0.))),up=cross(r0,f),rd=normalize(f*1.5+r0*uv.x+up*uv.y);\nfloat fp=.7/uR.y,t=0.,bm=9.,tm=0.,m=0.,mm=0.;bool hit=false;vec3 gl=vec3(0.);\nfor(int i=0;i<110;i++){vec2 s=mp(ro+rd*t);\ngl+=vec3(.1,.8,1.)*.02/(.06+DN*DN)*min(s.x,.25);\nfloat pw=max(t*fp,.0006);\nif(s.x<pw*.4){hit=true;m=s.y;break;}\nfloat q=s.x/pw;if(q<bm){bm=q;tm=t;mm=s.y;}\nt+=s.x*.6;if(t>14.)break;}\nvec3 col=sky(rd*2.4)*.55+vec3(.01,.03,.05)*exp(-dot(uv,uv)*3.);\nif(hit)col=shd(ro+rd*t,rd,m);\nelse if(bm<1.6)col=mix(col,shd(ro+rd*tm,rd,mm),(1.-smoothstep(.4,1.6,bm))*.85);\ncol+=gl;return col;}\nvoid main(){vec3 col;if(uP<.5)col=bh();else col=mc();\ncol+=vec3(.5,.9,1.)*exp(-pow((uP-.5)*90.,2.))*1.4;\ncol*=1.-uD*.6;vec2 sc=gl_FragCoord.xy/uR-.5;col*=1.-dot(sc,sc)*.9;\nif(uP<.5)col=max(1.-exp(-col*1.25),0.);else{col*=.9;col=clamp((col*(2.51*col+.03))/(col*(2.43*col+.59)+.14),0.,1.);}col+=(h(gl_FragCoord.xy+fract(uT)*91.)-.5)*.02;gl_FragColor=vec4(col,1.);}\n";
+var ok=!!gl,U={},t0=performance.now(),P=0,PT=0,mx=0,my=0;
+if(ok){
+ function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+ var pr=gl.createProgram();
+ gl.attachShader(pr,sh(gl.VERTEX_SHADER,"attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}"));
+ gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
+ if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){ok=false}else{
+  gl.useProgram(pr);var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var la=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(la);gl.vertexAttribPointer(la,2,gl.FLOAT,false,0,0);
+  ['uR','uM','uT','uP','uD'].forEach(function(n){U[n]=gl.getUniformLocation(pr,n)});
+ }
+}
+var QS=1;function size(){var d=Math.min(window.devicePixelRatio||1,2),q=Math.min(1,Math.sqrt(2.4e6*QS/(innerWidth*innerHeight*d*d)));cv.width=Math.round(innerWidth*d*q);cv.height=Math.round(innerHeight*d*q);if(ok)gl.viewport(0,0,cv.width,cv.height)}
+addEventListener('resize',size);size();
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=.5-e.clientY/innerHeight});
+var J=document.getElementById('journey'),ids=['hero','c1','c2','c3','c4','l1','l2','l3','l4','l5','fin'].map(function(i){return document.getElementById(i)});
+var rng=[[0,.04],[.06,.16],[.19,.33],[.38,.47],[.52,.58],[.6,.66],[.68,.74],[.76,.82],[.84,.9],[.92,.96],[.975,1.1]];
+function scroll(){var len=J.offsetHeight-innerHeight;var s=scrollY;PT=Math.min(1,Math.max(0,s/len));
+ ids.forEach(function(el,i){el.classList.toggle('on',PT>=rng[i][0]&&PT<=rng[i][1])});
+ window._d=Math.min(1,Math.max(0,(s-len)/innerHeight))}
+addEventListener('scroll',scroll,{passive:true});scroll();
+var mm=0,mn=0;
+var ft=performance.now(),fa=16,fc=0;function frame(){var nw=performance.now();fa+=(nw-ft-fa)*.05;ft=nw;if(++fc>90&&fa>28&&QS>.45){QS*=.8;size();fc=0;fa=16}
+ P+=(PT-P)*.08;mm+=(mx-mm)*.05;mn+=(my-mn)*.05;
+ if(ok){var t=reduce?0:(performance.now()-t0)/1000;
+  gl.uniform2f(U.uR,cv.width,cv.height);gl.uniform2f(U.uM,mm,mn);gl.uniform1f(U.uT,t);gl.uniform1f(U.uP,P);gl.uniform1f(U.uD,window._d||0);
+  gl.drawArrays(gl.TRIANGLES,0,3)}
+ requestAnimationFrame(frame)}
+if(ok)frame();
+document.getElementById('go').addEventListener('click',function(e){e.preventDefault();scrollTo({top:innerHeight*.9,behavior:reduce?'auto':'smooth'})});
+document.getElementById('go2').addEventListener('click',function(e){e.preventDefault();scrollTo({top:(J.offsetHeight-innerHeight)*.55,behavior:reduce?'auto':'smooth'})});
+document.getElementById('f1').addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').textContent='Teşekkürler, sana dönüş yapacağız.';e.target.reset()});
+})();
+</script>
+</body>
+</html>
